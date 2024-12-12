@@ -14,10 +14,8 @@ const mainLeft = document.querySelector(".main-left");
 const mainStart = document.querySelector(".banner");
 const toremove = document.querySelector(".toremove");
 const totalCheck = document.querySelector(".tot-check");
-
 const crossCheckout = document.getElementById('x');
 const restAll= document.querySelector(".rest-all");
-
 const mainRight = document.querySelector(".main-div");
 const mainRightRight = document.querySelector(".namePrice");
 
@@ -25,24 +23,18 @@ const mainRightRight = document.querySelector(".namePrice");
 mainStart.addEventListener("click", ()=> {
    mainLeft.classList.add("main-left-after");
    mainRight.classList.add("main-right-after");
-
    toremove.style.display= "none";
-
    startGame.style.display="block";
    
 });
 
 
-
-
 let currentItem = {};
 let cartItems = new Map();
 let totalPrice = 0;
-
 const totalPriceElement = document.createElement("p");
 totalPriceElement.classList.add('total-price');
 totalPriceElement.style.paddingLeft = "9px";
-
 totalPriceElement.innerHTML =   `Your Total Value: $${totalPrice}`;
 totalPriceElement.classList.add("total-top");
 mainRightRight.appendChild(totalPriceElement);
@@ -57,7 +49,6 @@ fetch('https://dummyjson.com/products?limit=194')
             parent(data); 
             countSpin.style.display = "block";
             totalPriceElement.style.display = "block";
-
             nextItem.style.display = "block";
             addItem.style.display = "block";
             checkoutBtn.style.display = "block";
@@ -73,7 +64,6 @@ cartTopClick.addEventListener("click", ()=> {
 
     cartMain.classList.toggle("cart-active");
 
-    
 });
 
 
@@ -83,7 +73,6 @@ function parent(data) {
 
     nextItem.addEventListener("click", ()=> {
         
-
         if (clickCount<10) {
             clickCount++;
             countSpin.innerText = `Chances left: ${10-clickCount}`;
@@ -122,7 +111,6 @@ function parent(data) {
 
     addItem.addEventListener("click", ()=> {
         
-
         // adds
         if (cartItems.size >= 5) {
             alert("cart Full");
@@ -133,7 +121,6 @@ function parent(data) {
             alert("alredy added");
             return;
 
-
         }
 
         cartItems.set(currentItem.name, currentItem.price);
@@ -142,7 +129,6 @@ function parent(data) {
         itemNewAdded.style.marginBottom = "8px";
         itemNewAdded.innerHTML = `${currentItem.name} : $${currentItem.price}`;
         cartMain.appendChild(itemNewAdded);
-
 
         // for checkout
 
@@ -168,9 +154,6 @@ function parent(data) {
 
         mainItemCheckoutRightH.style.fontWeight = "bold";
         mainItemCheckoutRightH.style.marginBottom = "0.5rem";
-        
-
-                
 
         //for total price
 
@@ -178,10 +161,8 @@ function parent(data) {
         updatedTotal(); 
         
     });
-    
 
     function nextBtnWork(data) {
-
 
             // function for random generation
             
@@ -193,7 +174,6 @@ function parent(data) {
             
             const randomValue = getRandomInt(1, 193);
             const product = data.products[randomValue];
-            console.log(randomValue); 
 
             // start of DOM
             currentItem = {
@@ -201,10 +181,6 @@ function parent(data) {
                 price: product.price,
                 picture: product.images[0],
             };
-
-
-            console.log(currentItem.name);
-            console.log(currentItem.price);
 
             mainDiv.innerText = currentItem.name;
             mainDiv.classList.add("name-pro");
@@ -216,21 +192,14 @@ function parent(data) {
             imageDiv.style.height = "280px";
             imageDiv.style.backgroundSize = "cover";
             imageDiv.style.backgroundColor= "white";
-
-
-            
-            
-           
-
-
-        
-
-        
+          
     } 
     nextBtnWork(data)
 
-
 }
+
+// function to update the total
+
 function updatedTotal() {
     totalPriceElement.innerHTML =  `Total Value: $${totalPrice.toFixed(2)}`;
     totalCheck.innerHTML = `$${totalPrice.toFixed(2)}`;
@@ -239,11 +208,9 @@ function updatedTotal() {
     totalPriceElement.style.marginBottom = "9px";
 
 }
-    
-        
-   
+     
 
-// for menu 
+// for menu on the phones
 
 const menuBtn = document.querySelector(".menu-btn");
 const menuItems = document.querySelector(".nav-links");
